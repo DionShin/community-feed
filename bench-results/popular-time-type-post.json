@@ -1,0 +1,73 @@
+{
+  "environment": {
+    "measuredAt": "2026-10-13T21:37:12.522Z",
+    "mongodb": "7.0.24",
+    "node": "v22.17.1",
+    "cpu": "AMD Ryzen 5 7500F 6-Core Processor",
+    "cores": 12,
+    "memoryGb": 32,
+    "os": "Windows_NT 10.0.26200",
+    "runs": {
+      "warmup": 3,
+      "measured": 20
+    },
+    "eventsIndex": {
+      "variant": "time-type-post",
+      "spec": {
+        "receivedAt": 1,
+        "type": 1,
+        "postId": 1
+      }
+    }
+  },
+  "results": [
+    {
+      "totalEvents": 100000,
+      "eventsInWindow": 42166,
+      "resultCount": 20,
+      "p50Ms": 55.7,
+      "p95Ms": 58.4,
+      "maxMs": 59.3,
+      "keysExamined": 42156,
+      "docsExamined": 0,
+      "plan": "PROJECTION_COVERED <- IXSCAN",
+      "seedSeconds": 1.3
+    },
+    {
+      "totalEvents": 300000,
+      "eventsInWindow": 126352,
+      "resultCount": 20,
+      "p50Ms": 170.9,
+      "p95Ms": 187.9,
+      "maxMs": 190,
+      "keysExamined": 126302,
+      "docsExamined": 0,
+      "plan": "PROJECTION_COVERED <- IXSCAN",
+      "seedSeconds": 3.7
+    },
+    {
+      "totalEvents": 1000000,
+      "eventsInWindow": 421378,
+      "resultCount": 20,
+      "p50Ms": 532,
+      "p95Ms": 539.8,
+      "maxMs": 542.1,
+      "keysExamined": 420856,
+      "docsExamined": 0,
+      "plan": "PROJECTION_COVERED <- IXSCAN",
+      "seedSeconds": 11.2
+    },
+    {
+      "totalEvents": 3000000,
+      "eventsInWindow": 1264715,
+      "resultCount": 20,
+      "p50Ms": 1544.9,
+      "p95Ms": 1598.6,
+      "maxMs": 1605.8,
+      "keysExamined": 1260009,
+      "docsExamined": 0,
+      "plan": "PROJECTION_COVERED <- IXSCAN",
+      "seedSeconds": 34.1
+    }
+  ]
+}

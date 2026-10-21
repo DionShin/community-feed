@@ -1,0 +1,17 @@
+<div class="nav">
+  <a class="logo" href="/">커뮤니티</a>
+  <form class="search-form" action="/search" method="GET">
+    <input class="search" name="q" placeholder="검색" maxlength="50"
+      value="<%= typeof query !== 'undefined' ? query : '' %>">
+    <button class="search-send" type="submit">검색</button>
+  </form>
+  <% if (currentUser) { %>
+    <a href="/posts/new">글쓰기</a>
+    <a href="/chats">채팅</a>
+    <span><%= currentUser.nickname %>님</span>
+    <form action="/logout" method="POST"><button type="submit">로그아웃</button></form>
+  <% } else { %>
+    <a href="/login">로그인</a>
+    <a href="/register">회원가입</a>
+  <% } %>
+</div>

@@ -1,0 +1,44 @@
+{
+  "environment": {
+    "measuredAt": "2026-10-13T21:58:01.284Z",
+    "events": 1000000,
+    "connections": 50,
+    "durationSec": 10,
+    "node": "v22.17.1",
+    "cpu": "AMD Ryzen 5 7500F 6-Core Processor",
+    "cores": 12,
+    "memoryGb": 32
+  },
+  "results": [
+    {
+      "strategy": "1차: 원본 이벤트 집계(커버링 인덱스)",
+      "requestsPerSec": 28,
+      "totalRequests": 278,
+      "latencyP50Ms": 1507,
+      "latencyP99Ms": 3058,
+      "errors": 0,
+      "non2xx": 0,
+      "computations": 278
+    },
+    {
+      "strategy": "2차: 시간별 통계",
+      "requestsPerSec": 63,
+      "totalRequests": 626,
+      "latencyP50Ms": 719,
+      "latencyP99Ms": 1419,
+      "errors": 0,
+      "non2xx": 0,
+      "computations": 626
+    },
+    {
+      "strategy": "3차: 시간별 통계 + 결과 캐시",
+      "requestsPerSec": 1345,
+      "totalRequests": 13450,
+      "latencyP50Ms": 35,
+      "latencyP99Ms": 49,
+      "errors": 0,
+      "non2xx": 0,
+      "computations": 1
+    }
+  ]
+}

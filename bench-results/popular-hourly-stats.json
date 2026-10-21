@@ -1,0 +1,98 @@
+{
+  "environment": {
+    "measuredAt": "2026-10-13T21:50:24.193Z",
+    "mongodb": "7.0.24",
+    "node": "v22.17.1",
+    "cpu": "AMD Ryzen 5 7500F 6-Core Processor",
+    "cores": 12,
+    "memoryGb": 32,
+    "os": "Windows_NT 10.0.26200",
+    "runs": {
+      "warmup": 3,
+      "measured": 20
+    },
+    "eventsIndex": {
+      "variant": "type-time-post",
+      "spec": {
+        "type": 1,
+        "receivedAt": 1,
+        "postId": 1
+      }
+    },
+    "mode": "hourly"
+  },
+  "results": [
+    {
+      "totalEvents": 100000,
+      "eventsInWindow": 42166,
+      "resultCount": 20,
+      "p50Ms": 18.3,
+      "p95Ms": 21.1,
+      "maxMs": 21.3,
+      "keysExamined": 5596,
+      "docsExamined": 5596,
+      "plan": "PROJECTION_SIMPLE <- FETCH <- IXSCAN",
+      "job": {
+        "backfillMs": 156.9,
+        "rebuildRecentP50Ms": 20.6,
+        "statsRowsInWindow": 5596
+      },
+      "sameAsEvents": true,
+      "seedSeconds": 1.4
+    },
+    {
+      "totalEvents": 300000,
+      "eventsInWindow": 126352,
+      "resultCount": 20,
+      "p50Ms": 44.5,
+      "p95Ms": 51.4,
+      "maxMs": 53.7,
+      "keysExamined": 13263,
+      "docsExamined": 13263,
+      "plan": "PROJECTION_SIMPLE <- FETCH <- IXSCAN",
+      "job": {
+        "backfillMs": 440.3,
+        "rebuildRecentP50Ms": 49.1,
+        "statsRowsInWindow": 13263
+      },
+      "sameAsEvents": true,
+      "seedSeconds": 4.4
+    },
+    {
+      "totalEvents": 1000000,
+      "eventsInWindow": 421378,
+      "resultCount": 20,
+      "p50Ms": 102.7,
+      "p95Ms": 113.7,
+      "maxMs": 126.7,
+      "keysExamined": 32688,
+      "docsExamined": 32688,
+      "plan": "PROJECTION_SIMPLE <- FETCH <- IXSCAN",
+      "job": {
+        "backfillMs": 1078.9,
+        "rebuildRecentP50Ms": 128.4,
+        "statsRowsInWindow": 32688
+      },
+      "sameAsEvents": true,
+      "seedSeconds": 12.2
+    },
+    {
+      "totalEvents": 3000000,
+      "eventsInWindow": 1264715,
+      "resultCount": 20,
+      "p50Ms": 207.8,
+      "p95Ms": 217.9,
+      "maxMs": 218.2,
+      "keysExamined": 70412,
+      "docsExamined": 70412,
+      "plan": "PROJECTION_SIMPLE <- FETCH <- IXSCAN",
+      "job": {
+        "backfillMs": 2522.5,
+        "rebuildRecentP50Ms": 270.5,
+        "statsRowsInWindow": 70412
+      },
+      "sameAsEvents": true,
+      "seedSeconds": 34.8
+    }
+  ]
+}

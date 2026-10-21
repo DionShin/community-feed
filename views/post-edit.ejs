@@ -1,0 +1,10 @@
+<%- include('partials/head', { title: '글 수정' }) %>
+<%- include('partials/nav') %>
+<form class="form-box" action="/posts/<%= post._id %>?_method=PATCH" method="POST">
+  <h4>글 수정</h4>
+  <% if (error) { %><p class="error-text"><%= error %></p><% } %>
+  <%- include('partials/post-fields', { values: post }) %>
+  <p class="meta">이미지는 수정할 수 없습니다.</p>
+  <button type="submit">저장</button>
+</form>
+<%- include('partials/foot') %>

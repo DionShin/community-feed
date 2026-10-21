@@ -1,0 +1,233 @@
+{
+  "environment": {
+    "measuredAt": "2026-10-14T13:11:10.373Z",
+    "events": 100000,
+    "posts": 100000,
+    "node": "v22.17.1",
+    "cpu": "AMD Ryzen 5 7500F 6-Core Processor",
+    "memoryGb": 32
+  },
+  "injected": {
+    "likeCountDrift": 50,
+    "commentCountDrift": 30,
+    "repeatedViewPairs": 1000,
+    "orphanEvents": 2000,
+    "skewedImpressions": 1000,
+    "statsMismatches": 10
+  },
+  "detection": [
+    {
+      "항목": "공감 수 어긋남(글)",
+      "넣은양": 50,
+      "찾은양": 50,
+      "일치": true
+    },
+    {
+      "항목": "댓글 수 어긋남(글)",
+      "넣은양": 30,
+      "찾은양": 30,
+      "일치": true
+    },
+    {
+      "항목": "반복 조회(회)",
+      "넣은양": 5000,
+      "찾은양": 5000,
+      "일치": true
+    },
+    {
+      "항목": "주인 없는 이벤트(건)",
+      "넣은양": 2000,
+      "찾은양": 2000,
+      "일치": true
+    },
+    {
+      "항목": "시계 오차 노출(건)",
+      "넣은양": 1000,
+      "찾은양": 1000,
+      "일치": true
+    },
+    {
+      "항목": "통계 불일치(글)",
+      "넣은양": 10,
+      "찾은양": 10,
+      "일치": true
+    }
+  ],
+  "checks": [
+    {
+      "검사": "like_count_drift",
+      "섞기전": "ok",
+      "섞은후": "warn",
+      "소요ms": 6602
+    },
+    {
+      "검사": "comment_count_drift",
+      "섞기전": "ok",
+      "섞은후": "warn",
+      "소요ms": 7547
+    },
+    {
+      "검사": "duplicate_views",
+      "섞기전": "ok",
+      "섞은후": "warn",
+      "소요ms": 56
+    },
+    {
+      "검사": "orphan_events",
+      "섞기전": "ok",
+      "섞은후": "warn",
+      "소요ms": 835
+    },
+    {
+      "검사": "clock_skew",
+      "섞기전": "ok",
+      "섞은후": "ok",
+      "소요ms": 92
+    },
+    {
+      "검사": "stats_freshness",
+      "섞기전": "ok",
+      "섞은후": "fail",
+      "소요ms": 0
+    },
+    {
+      "검사": "stats_consistency",
+      "섞기전": "ok",
+      "섞은후": "fail",
+      "소요ms": 7
+    },
+    {
+      "검사": "zero_result_searches",
+      "섞기전": "info",
+      "섞은후": "info",
+      "소요ms": 0
+    }
+  ],
+  "totalCheckMs": 15139,
+  "before": {
+    "like_count_drift": {
+      "name": "like_count_drift",
+      "title": "공감 수가 실제 공감 문서 수와 다른 글 수",
+      "status": "ok",
+      "value": 0,
+      "threshold": 0,
+      "detail": {},
+      "samples": [],
+      "durationMs": 6612
+    },
+    "comment_count_drift": {
+      "name": "comment_count_drift",
+      "title": "댓글 수가 실제 댓글 수와 다른 글 수",
+      "status": "ok",
+      "value": 0,
+      "threshold": 0,
+      "detail": {},
+      "samples": [],
+      "durationMs": 6752
+    },
+    "duplicate_views": {
+      "name": "duplicate_views",
+      "title": "같은 사람의 10분 내 반복 조회 비율",
+      "status": "ok",
+      "value": 0.0235,
+      "threshold": 0.2,
+      "detail": {
+        "totalViews": 10640,
+        "repeatedViews": 250,
+        "repeatedPairs": 170
+      },
+      "samples": [
+        {
+          "userId": "6acf7f4ea7e09e8497872dd0",
+          "postId": "6acf24ba0e7a9c964e7d2c6b",
+          "views": 7
+        },
+        {
+          "userId": "6acf7f4ea7e09e8497872dd0",
+          "postId": "6acf24ba0e7a9c964e7d2c6b",
+          "views": 6
+        },
+        {
+          "userId": "6acf7f4ea7e09e8497872dd0",
+          "postId": "6acf24ba0e7a9c964e7d2c6b",
+          "views": 6
+        },
+        {
+          "userId": "6acf7f4ea7e09e8497872dd1",
+          "postId": "6acf24ba0e7a9c964e7d2c6b",
+          "views": 5
+        },
+        {
+          "userId": "6acf7f4ea7e09e8497872dd0",
+          "postId": "6acf24ba0e7a9c964e7d2c6b",
+          "views": 5
+        }
+      ],
+      "durationMs": 43
+    },
+    "orphan_events": {
+      "name": "orphan_events",
+      "title": "존재하지 않는 글을 가리키는 이벤트 비율",
+      "status": "ok",
+      "value": 0,
+      "threshold": 0.01,
+      "detail": {
+        "totalEvents": 48095,
+        "orphanEvents": 0,
+        "deletedPostEvents": 0
+      },
+      "samples": [],
+      "durationMs": 675
+    },
+    "clock_skew": {
+      "name": "clock_skew",
+      "title": "발생 시각과 수신 시각이 1분 넘게 차이 나는 노출 비율",
+      "status": "ok",
+      "value": 0,
+      "threshold": 0.05,
+      "detail": {
+        "totalImpressions": 33641,
+        "late": 0,
+        "ahead": 0,
+        "maxLateMs": 0
+      },
+      "samples": [],
+      "durationMs": 82
+    },
+    "stats_freshness": {
+      "name": "stats_freshness",
+      "title": "시간별 통계 작업 마지막 실행 후 경과 시간(ms)",
+      "status": "ok",
+      "value": -2200,
+      "threshold": 300000,
+      "detail": {
+        "lastRunAt": "2026-10-14T13:10:40.953Z"
+      },
+      "samples": [],
+      "durationMs": 1
+    },
+    "stats_consistency": {
+      "name": "stats_consistency",
+      "title": "직전 한 시간 통계와 원본 재계산 값이 다른 글 수",
+      "status": "ok",
+      "value": 0,
+      "threshold": 0,
+      "detail": {
+        "hour": "2026-10-14T12:00:00.000Z",
+        "postsChecked": 379
+      },
+      "samples": [],
+      "durationMs": 8
+    },
+    "zero_result_searches": {
+      "name": "zero_result_searches",
+      "title": "최근 7일 결과 0건 검색어",
+      "status": "info",
+      "value": 0,
+      "threshold": null,
+      "detail": {},
+      "samples": [],
+      "durationMs": 1
+    }
+  }
+}

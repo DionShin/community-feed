@@ -1,0 +1,65 @@
+<%- include('partials/head', { title: '커뮤니티' }) %>
+<%- include('partials/nav') %>
+
+<% const isPopular = surface === 'feed_popular' %>
+
+<div class="board-tabs">
+  <a href="/" class="<%= surface === 'feed_latest' ? 'active' : '' %>">전체</a>
+  <a href="/popular" class="<%= isPopular ? 'active' : '' %>">인기</a>
+  <% boards.forEach((b) => { %>
+    <a href="/?board=<%= b.id %>" class="<%= currentBoard === b.id ? 'active' : '' %>"><%= b.name %></a>
+  <% }) %>
+</div>
+
+<% if (surface === 'search') { %>
+  <p class="feed-caption">
+    <% if (query) { %>'<%= query %>' 검색 결과 <%= posts.length %>건<% } else { %>검색어를 입력해 주세요.<% } %>
+  </p>
+<% } %>
+
+<% if (isPopular) { %>
+  <p class="feed-caption">최근 <%= windowHours %>시간 동안 조회, 공감, 댓글이 많았던 글입니다. 1분마다 갱신됩니다.</p>
+<% } %>
+
+<% const liveFeed = (surface === 'feed_latest' || surface === 'feed_board') %>
+<% if (liveFeed) { %>
+  <a class="new-posts-banner" hidden data-new-posts-banner
+    data-board="<%= currentBoard || '' %>"
+    href="/<%= currentBoard ? '?board=' + currentBoard : '' %>"></a>
+<% } %>
+
+<div class="white-bg" data-surface="<%= surface %>">
+  <% if (posts.length === 0) { %>
+    <div class="list-box"><p><%= isPopular ? '아직 인기글이 없습니다.' : surface === 'search' ? '검색 결과가 없습니다.' : '아직 글이 없습니다.' %></p></div>
+  <% } %>
+  <% posts.forEach((post, i) => { %>
+    <div class="list-box" data-impression data-post-id="<%= post._id %>" data-position="<%= i %>">
+      <h4>
+        <% if (isPopular) { %><span class="rank"><%= i + 1 %></span><% } %>
+        <span class="board-label"><%= boardName(post.board) %></span>
+        <a href="/posts/<%= post._id %>?from=<%= surface %>"><%= post.title %></a>
+      </h4>
+      <p><%= post.content.length > 80 ? post.content.slice(0, 80) + '…' : post.content %></p>
+      <p class="meta">
+        <%= post.authorNickname %> · <%= formatDate(post.createdAt) %>
+        · 공감 <%= post.likeCount %> · 댓글 <%= post.commentCount %>
+      </p>
+      <% if (isPopular) { %>
+        <p class="meta">
+          최근 <%= windowHours %>시간: 조회 <%= post.stats.views %> · 공감 <%= post.stats.likes %>
+          · 댓글 <%= post.stats.comments %> · 점수 <%= post.stats.score %>
+        </p>
+      <% } %>
+    </div>
+  <% }) %>
+</div>
+
+<% if (nextCursor) { %>
+  <div class="pager">
+    <a href="/?<%= currentBoard ? 'board=' + currentBoard + '&' : '' %>cursor=<%= nextCursor %>">다음 글 보기</a>
+  </div>
+<% } %>
+
+<script src="/js/impressions.js"></script>
+<% if (liveFeed) { %><script src="/js/new-posts.js"></script><% } %>
+<%- include('partials/foot') %>

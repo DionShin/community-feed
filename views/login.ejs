@@ -1,0 +1,10 @@
+<%- include('partials/head', { title: '로그인' }) %>
+<%- include('partials/nav') %>
+<form class="form-box" action="/login" method="POST">
+  <h4>로그인</h4>
+  <% if (error) { %><p class="error-text"><%= error %></p><% } %>
+  <input name="username" placeholder="아이디" autocomplete="username" required>
+  <input name="password" type="password" placeholder="비밀번호" autocomplete="current-password" required>
+  <button type="submit">로그인</button>
+</form>
+<%- include('partials/foot') %>

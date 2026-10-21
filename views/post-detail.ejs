@@ -1,0 +1,67 @@
+<%- include('partials/head', { title: post.title }) %>
+<%- include('partials/nav') %>
+<div class="detail-bg">
+  <p class="meta"><a href="/?board=<%= post.board %>"><%= boardName(post.board) %></a></p>
+  <h3><%= post.title %></h3>
+  <p class="meta">
+    <%= post.authorNickname %> · <%= formatDate(post.createdAt) %>
+    <% if (post.updatedAt > post.createdAt) { %> · 수정됨<% } %>
+  </p>
+  <div class="post-content"><%= post.content %></div>
+
+  <% if (post.imageUrls.length > 0) { %>
+    <div class="post-images">
+      <% post.imageUrls.forEach((url) => { %>
+        <img src="<%= url %>" alt="첨부 이미지">
+      <% }) %>
+    </div>
+  <% } %>
+
+  <div class="post-actions">
+    <button type="button" class="like-button"
+      data-like-button
+      data-post-id="<%= post._id %>"
+      data-liked="<%= liked %>"
+      data-logged-in="<%= Boolean(currentUser) %>"><%= liked ? '♥' : '♡' %> 공감 <%= post.likeCount %></button>
+
+    <% if (currentUser && !isAuthor) { %>
+      <form action="/posts/<%= post._id %>/chat" method="POST">
+        <button type="submit">작성자에게 문의하기</button>
+      </form>
+    <% } %>
+
+    <% if (isAuthor) { %>
+      <a href="/posts/<%= post._id %>/edit">수정</a>
+      <form action="/posts/<%= post._id %>?_method=DELETE" method="POST" onsubmit="return confirm('삭제할까요?')">
+        <button type="submit">삭제</button>
+      </form>
+    <% } %>
+  </div>
+</div>
+
+<div class="detail-bg" id="comments">
+  <h4>댓글 <%= post.commentCount %></h4>
+  <% comments.forEach((c) => { %>
+    <div class="comment">
+      <p class="meta"><strong><%= c.authorNickname %></strong> · <%= formatDate(c.createdAt) %></p>
+      <div class="post-content"><%= c.content %></div>
+      <% if (currentUser && c.authorId.equals(currentUser._id)) { %>
+        <form action="/comments/<%= c._id %>?_method=DELETE" method="POST" onsubmit="return confirm('댓글을 삭제할까요?')">
+          <button type="submit" class="small-button">삭제</button>
+        </form>
+      <% } %>
+    </div>
+  <% }) %>
+
+  <% if (currentUser) { %>
+    <form class="comment-form" action="/posts/<%= post._id %>/comments" method="POST">
+      <textarea name="content" rows="3" maxlength="1000" placeholder="댓글을 입력하세요" required></textarea>
+      <button type="submit">댓글 등록</button>
+    </form>
+  <% } else { %>
+    <p class="meta"><a href="/login">로그인</a>하면 댓글을 쓸 수 있습니다.</p>
+  <% } %>
+</div>
+
+<script src="/js/like.js"></script>
+<%- include('partials/foot') %>

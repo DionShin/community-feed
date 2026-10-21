@@ -1,0 +1,8 @@
+<select name="board" required>
+  <option value="">게시판 선택</option>
+  <% boards.forEach((b) => { %>
+    <option value="<%= b.id %>" <%= values.board === b.id ? 'selected' : '' %>><%= b.name %></option>
+  <% }) %>
+</select>
+<input name="title" placeholder="제목" maxlength="100" value="<%= values.title || '' %>" required>
+<textarea name="content" placeholder="내용" maxlength="5000" rows="10" required><%= values.content || '' %></textarea>

@@ -1,0 +1,24 @@
+<%- include('partials/head', { title: '채팅' }) %>
+<%- include('partials/nav') %>
+<div class="detail-bg">
+  <p class="meta"><a href="/posts/<%= room.postId %>">글 보기: <%= room.postTitle %></a></p>
+
+  <div class="chat-screen" data-chat-screen data-room-id="<%= room._id %>" data-my-id="<%= currentUser._id %>">
+    <% messages.forEach((m) => { %>
+      <div class="chat-box <%= m.senderId.equals(currentUser._id) ? 'mine' : '' %>">
+        <span class="meta"><%= m.senderNickname %></span>
+        <span class="chat-text"><%= m.content %></span>
+      </div>
+    <% }) %>
+  </div>
+
+  <form class="chat-form" data-chat-form>
+    <input class="chat-input" maxlength="1000" placeholder="메시지를 입력하세요" autocomplete="off" required>
+    <button class="chat-button" type="submit">전송</button>
+  </form>
+  <p class="error-text" data-chat-error hidden></p>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/chat.js"></script>
+<%- include('partials/foot') %>
