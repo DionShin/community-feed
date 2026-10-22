@@ -1,0 +1,150 @@
+{
+  "environment": {
+    "measuredAt": "2026-10-22T03:34:39.188Z",
+    "node": "v22.17.1",
+    "cpu": "AMD Ryzen 5 7500F 6-Core Processor",
+    "memoryGb": 32,
+    "mongodb": "7.0.24"
+  },
+  "signup": {
+    "concurrency": 50,
+    "rounds": 100,
+    "naive": {
+      "roundsWithDuplicate": 100,
+      "avgAccountsCreated": 41.9
+    },
+    "adopted": {
+      "roundsWithDuplicate": 0,
+      "avgAccountsCreated": 1
+    }
+  },
+  "like": {
+    "concurrency": 20,
+    "rounds": 100,
+    "expectedCount": 1,
+    "naive": {
+      "avgLikeCount": 15.9,
+      "wrongRounds": 100
+    },
+    "adopted": {
+      "avgLikeCount": 1,
+      "wrongRounds": 0
+    }
+  },
+  "commentDelete": {
+    "concurrency": 5,
+    "rounds": 100,
+    "expectedCount": 9,
+    "naive": {
+      "avgCommentCount": 5,
+      "wrongRounds": 100
+    },
+    "adopted": {
+      "avgCommentCount": 9,
+      "wrongRounds": 0
+    }
+  },
+  "pagination": {
+    "postsTotal": 200000,
+    "pageSize": 20,
+    "rows": [
+      {
+        "page": 1,
+        "skip": {
+          "ms": 0.6,
+          "docsExamined": 20
+        },
+        "cursor": {
+          "ms": 0.6,
+          "docsExamined": 21
+        }
+      },
+      {
+        "page": 100,
+        "skip": {
+          "ms": 4,
+          "docsExamined": 2000
+        },
+        "cursor": {
+          "ms": 0.4,
+          "docsExamined": 21
+        }
+      },
+      {
+        "page": 1000,
+        "skip": {
+          "ms": 36.4,
+          "docsExamined": 20000
+        },
+        "cursor": {
+          "ms": 0.4,
+          "docsExamined": 21
+        }
+      },
+      {
+        "page": 5000,
+        "skip": {
+          "ms": 192,
+          "docsExamined": 100000
+        },
+        "cursor": {
+          "ms": 0.4,
+          "docsExamined": 21
+        }
+      },
+      {
+        "page": 10000,
+        "skip": {
+          "ms": 355.3,
+          "docsExamined": 200000
+        },
+        "cursor": {
+          "ms": 0.5,
+          "docsExamined": 20
+        }
+      }
+    ]
+  },
+  "denormalization": {
+    "feedSize": 20,
+    "likesPerPost": 5000,
+    "commentsPerPost": 1000,
+    "read": {
+      "storedMs": 0.3,
+      "countedMs": 11,
+      "queriesStored": 1,
+      "queriesCounted": 41
+    },
+    "writePerLike": {
+      "insertOnlyMs": 0.233,
+      "insertAndIncMs": 0.465
+    }
+  },
+  "eventTampering": {
+    "forgedCount": 1000,
+    "realTopScore": 30,
+    "before": {
+      "rank": null,
+      "score": 0
+    },
+    "adopted": {
+      "forgedLikes": {
+        "accepted": 0,
+        "rejected": 1000,
+        "rank": null,
+        "score": 0
+      },
+      "forgedImpressions": {
+        "accepted": 1000,
+        "rejected": 0,
+        "rank": null,
+        "score": 0
+      }
+    },
+    "naive": {
+      "forgedLikesStored": 1000,
+      "rank": 1,
+      "score": 3000
+    }
+  }
+}

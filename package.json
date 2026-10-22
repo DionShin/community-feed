@@ -14,7 +14,8 @@
     "search:index": "node scripts/create-search-index.js",
     "dq:check": "node scripts/dq-check.js",
     "dq:fix-counts": "node scripts/dq-fix-counts.js",
-    "bench:dq": "node scripts/bench-dq.js"
+    "bench:dq": "node scripts/bench-dq.js",
+    "bench:design": "node scripts/bench-design.js"
   },
   "engines": {
     "node": ">=20"
